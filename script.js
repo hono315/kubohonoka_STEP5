@@ -2,7 +2,7 @@ const showButton = document.getElementById('showButton');
 const input = document.getElementById('input');
 const output = document.getElementById('output');
 const colorButton = document.getElementById("colorButton");
-const highlightButton = document.getElementById("highlightButton");
+// const highlightButton = document.getElementById("highlightButton");
 const tableInput = document.getElementById("tableInput");
 const addButton = document.getElementById("addButton");
 const tableBody = document.getElementById("tableBody");
@@ -18,6 +18,7 @@ showButton.addEventListener('click', function () {
     }
 
     output.textContent = text;
+    output.classList.toggle("highlight");
 });
 
 // 設問２
@@ -36,12 +37,9 @@ function changeStyle() {
 
 colorButton.addEventListener("click", changeStyle);
 
-// 設問３
-highlightButton.addEventListener("click", function () {
-    highlightButton.classList.toggle("highlight");
-});
-
 // 設問４・５・６
+
+let count = 0;
 
 addButton.addEventListener("click", function () {
     const text = tableInput.value;
@@ -63,6 +61,9 @@ addButton.addEventListener("click", function () {
     deleteButton.addEventListener("click", function () {
         tr.remove();
 
+        count--;
+        console.log("追加回数:", count);
+
         if (tableBody.children.length < 3) {
             addButton.style.display = "inline";
         }
@@ -73,6 +74,8 @@ addButton.addEventListener("click", function () {
     tr.appendChild(tdButton);
 
     tableBody.appendChild(tr);
+    count++;
+    console.log("追加回数:", count);
 
     if (tableBody.children.length >= 3) {
         addButton.style.display = "none";
@@ -80,7 +83,11 @@ addButton.addEventListener("click", function () {
 
     tableInput.value = "";
 
-//     if (tableBody.children.length > 3) {
-//     tableBody.removeChild(tableBody.firstElementChild);
-// }
+    //     if (tableBody.children.length > 3) {
+    //     tableBody.removeChild(tableBody.firstElementChild);
+    // }
 });
+
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
